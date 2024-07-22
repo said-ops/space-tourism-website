@@ -128,9 +128,6 @@ console.log(icon,menu);
 
                                 li.addEventListener('click' , () => {
 
-                                     
-                                    
-                                    
                                     if(window.innerWidth > 770){
 
                                         document.body.style.background = 'url(./assets/technology/background-technology-desktop.jpg)';
@@ -147,8 +144,6 @@ console.log(icon,menu);
                                         document.body.style.backgroundSize = 'cover';
 
                                     }
-
-                                    
 
                             });
                               
