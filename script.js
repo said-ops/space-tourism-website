@@ -6,7 +6,7 @@ const menu = document.querySelector('nav ul');
 
 //======================nav li elements
 
-const navLinks = document.querySelectorAll('nav ul ');
+const navLinks = document.querySelectorAll('nav ul li ');
 
 
 function linkHandl() {
@@ -44,7 +44,7 @@ function linkHandl() {
 
                     //implement html template to the body
 
-                    const homeConatainer = document.getElementById('home-container');
+                    const homeConatainer = document.querySelector('main');
 
                     homeConatainer.innerHTML = '';
                     homeConatainer.innerHTML =``;

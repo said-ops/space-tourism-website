@@ -26,7 +26,7 @@
 }
 *,*::after,*::before{
     box-sizing: border-box;
-    
+    transition: all 0.8s ease;
 }
 a,a:visited,a:active,a:focus-visible{
     text-decoration: none;
@@ -85,6 +85,7 @@ nav ul li{
     display: flex;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 ul li span{
     color: var(--white);
@@ -171,6 +172,7 @@ nav ul li::after {
 }
 nav ul li:hover::after{
     width: 100%;
+    
 }
 
 /*=============home media queries==========================*/
