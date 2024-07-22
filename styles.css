@@ -37,7 +37,7 @@ body{
     background-image: url(./assets/home/background-home-desktop.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: -6rem;
+    
     
 }
 header{
@@ -61,7 +61,7 @@ nav img{
     margin-left: 4rem;
     z-index: 1;
 }
-ul{ display: flex;
+nav ul{ display: flex;
     /* width: 736px; */
     height: 100%;
     align-items: center;
@@ -77,7 +77,7 @@ ul{ display: flex;
     gap: 2rem;  
     transition: all 0.4s ease;
 }
-ul li{
+nav ul li{
     font-family: var(--nav-links-font);
     font-size: 18px;
     color: #d0d6f9d5;
@@ -261,3 +261,156 @@ nav ul li:hover::after{
     }
 }
 /*=========== end home styling==================*/
+
+/*============start dest styling=================*/
+.fixed-container{
+    width: 1110px;
+    height: 792px;
+    display: flex;
+    flex-direction: column;
+}
+.dest-container{
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+.dest-image,.dest-infos{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.dest-image img{
+    width: 480px;
+    height: 480px;
+}
+.infos-wrapper{
+    width: 445px;
+    height: 468px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.planet-names{
+    display: flex;
+    /* font-size: 23px; */
+    color: var(--off-white);
+    text-transform: uppercase;
+    font-size: 28px;
+    gap: 2rem;
+    font-family: 'belfair regular';
+    
+}
+.planet-name{
+    color: var(--off-white);
+    font-family: var(--space-font);
+    text-transform: uppercase;
+    font-size: 100px;
+    
+}
+.planet-desc{
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+    line-height: 1.8;
+    color: var(--off-white);
+    text-align: left;
+}
+.dest-infos hr{ 
+    height: 1px;
+    background-color: var(--off-white);
+    width: 100%;
+}
+.metrics{
+    display: flex;
+    color: var(--off-white);
+    font-family: 'barlow condensed regular';
+    font-size: 16px;
+    gap: 40%;
+    text-align: left;
+}
+.avrg-distance,.travel-time{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.distance,.time{
+    font-size: 26px;
+    font-family: 'belfair regular';
+    text-transform: uppercase;
+}
+.travel-text,.distance-text{
+    text-transform:uppercase;
+    letter-spacing: 2px;
+}
+/*===========destination media queries============*/
+@media screen and (max-width:768px) {
+    
+    .fixed-container{
+        width: 100%;
+        height: 86%;
+        justify-content: center;
+        gap: 2rem;
+    }
+    .dest-container{
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .dest-image{
+        align-items: center;
+    }
+    .dest-image img{
+        width: 300px;
+        height: 300px;
+    }
+    .dest-infos{
+        align-items: center;
+        width: 100%;
+    }
+    .infos-wrapper{
+        text-align: center;
+    }
+    .planet-names{
+        justify-content: center;
+    }
+    .metrics{
+        justify-content: space-between;
+    }
+}
+@media screen and (max-width:580px) {
+    
+    .dest-image img {
+        width: 250px;
+        height: 250px;
+    }
+    .fixed-container{
+        align-items: center;
+
+    }
+    .dest-container{
+        gap: 3rem;
+        width: 90%;
+
+    }
+    .infos-wrapper{
+        width: 100%;
+    }
+    .planet-names{
+        justify-content: center;
+        width: 100%;
+        gap: 1rem;
+        font-size: 23px;
+        letter-spacing: 1px;
+    }
+    .planet-name{
+        font-size: 76px;
+    }
+    .metrics{
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .planet-desc{
+        text-align: center;
+    }
+}
