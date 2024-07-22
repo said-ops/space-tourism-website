@@ -1,8 +1,65 @@
-//menu 
+//menu elements
 const icon = document.querySelector('.logo-icon');
 const menu = document.querySelector('nav ul');
-console.log(icon,menu);
- 
+
+//=====================function to handle the nav links
+
+//======================nav li elements
+
+const navLinks = document.querySelectorAll('nav ul ');
+
+
+function linkHandl() {
+
+    navLinks.forEach(link, () => {
+
+//=========================links event listner
+
+        link.addEventListener('click', () => {
+
+            switch (link.getAttribute('data-value')) {
+
+                //=================home link
+
+                case 'home':
+
+                    //change background image based on screen size
+
+                    if(window.innerWidth > 770){
+
+                        document.body.style.background = 'url(./assets/home/background-home-desktop.jpg)';
+                        document.body.style.backgroundSize = 'cover';
+
+                    }else if(window.innerWidth < 580){
+
+                        document.body.style.background = 'url(./assets/home/background-home-mobile.jpg)';
+                        document.body.style.backgroundSize = 'cover';
+
+                    }else if(window.innerWidth < 770 && window.innerWidth >580){
+
+                        document.body.style.background = 'url(./assets/home/background-home-tablet.jpg)';
+                        document.body.style.backgroundSize = 'cover';
+
+                    }
+
+                    //implement html template to the body
+
+                    const homeConatainer = document.getElementById('home-container');
+
+                    homeConatainer.innerHTML = '';
+                    homeConatainer.innerHTML =``;
+                    
+                    break;
+            
+                default:
+                    break;
+            }
+
+        });
+
+    });
+
+}
     document.addEventListener('DOMContentLoaded', () => {
 
         //menu event listener
