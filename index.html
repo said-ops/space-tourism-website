@@ -6,34 +6,35 @@
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./styles.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
   <title>Frontend Mentor | Space tourism website</title>
 </head>
 <body>
   <header>
     <nav>
       <img src="./assets/shared/logo.svg" class="logo" alt="logo">
+      <img src="./assets/shared/icon-hamburger.svg" alt="menu icon" class="logo-icon"> 
       <ul>
-        <li><span>00&MediumSpace;</span>Home</li>
-        <li><span>01&MediumSpace;</span>Destination</li>
-        <li><span>02&MediumSpace;</span>Crew</li>
-        <li><span>03&MediumSpace;</span>Technology</li>
+        <li data-="home"><span>00&MediumSpace;</span><a href="#main">Home</a></li>
+        <li data-="destination"><span>01&MediumSpace;</span>Destination</li>
+        <li data-="crew"><span>02&MediumSpace;</span>Crew</li>
+        <li data-="tech"><span>03&MediumSpace;</span>Technology</li>
       </ul>
     </nav>
   </header>
-
-  <!-- 00 Home
-  01 Destination
-  02 Crew
-  03 Technology
-
-  So, you want to travel to
-  Space
-  Let’s face it; if you want to go to space, you might as well genuinely go to 
-  outer space and not hover kind of on the edge of it. Well sit back, and relax 
-  because we’ll give you a truly out of this world experience!
-
-  Explore -->
+  <main >
+    <section class="home-container" id="main">
+      <div class="home-text">
+        <span class="small-heading">So, you want to travel to</span>
+        <h1 class="home-heading">Space</h1>
+        <p class="home-prg">Let’s face it; if you want to go to space, you might as well genuinely go to 
+          outer space and not hover kind of on the edge of it. Well sit back, and relax 
+          because we’ll give you a truly out of this world experience!</p>
+      </div>
+      <div class="home-button">
+        <button class="home-btn">Explore</button>
+      </div>
+    </section>
+  </main>
   <script src="./script.js"></script>
 </body>
 </html>
