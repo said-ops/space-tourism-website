@@ -15,12 +15,14 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
             if(menu.style.display === 'none'){
 
-                menu.style.display = 'flex';
+                menu.style.display ='flex';
+                menu.style.width = '73%';
                 icon.setAttribute('src','./assets/shared/icon-close.svg');
 
             }
             else {
 
+                menu.style.width = '0%';
                 menu.style.display = 'none';
                 icon.setAttribute('src','./assets/shared/icon-hamburger.svg');
                 
@@ -73,6 +75,8 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                         document.body.style.backgroundSize = 'cover';
 
                                     }
+
+                                    //load html template
                                     const homeConatainer = document.querySelector('main');
 
                     homeConatainer.innerHTML = '';
@@ -113,15 +117,46 @@ const navLinks = document.querySelectorAll('nav ul li ');
                   </section>`;
 
 
-                  //adding event listners to distanation page
+                  //adding event listners to planet names in distination page
                                 
                   const planetNames = document.querySelectorAll('.planet-names li');
 
-                  planetNames.forEach(name => {
+                  planetNames.forEach(element => {
 
-                      name.addEventListener('click', () => {
+                      element.addEventListener('click', async () => {
+                        
+                        // alert('good');
 
-                          alert('good');
+                        //output elemnt to desplay informations
+                        const planetImage = document.getElementById('planet-img');
+                        const planetName = document.getElementById('planet-name');
+                        const planetDesc = document.getElementById('planet-desc');
+                        const planetDistance = document.getElementById('distance');
+                        const planetTravel = document.getElementById('travel');
+
+                        //getting data from json 
+
+                        const response = await fetch('data.json');
+                        const data = await response.json();
+
+                        const planets = data.destinations;
+
+                        // console.log(planets[0].description);
+                        
+                        //loop through every planet and test agains data-value and get descs
+                        planets.forEach((planet,index) => {
+
+                                    if(planet.name === element.getAttribute('data-value')){
+                                        planetName.textContent = planet.name;
+                                        planetDesc.textContent = planet.description;
+                                        planetDistance.textContent = planet.distance;
+                                        planetTravel.textContent = planet.travel;
+                                        planetImage.setAttribute('src',planet.images.png);
+                                    }
+                        });
+
+
+
 
                       });
                       
@@ -140,7 +175,7 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     if(window.innerWidth > 770){
 
                                         document.body.style.background = 'url(./assets/home/background-home-desktop.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
+                                        document.body.style.backgroundSize = '100% 100%';
 
                                     }else if(window.innerWidth < 580){
 
@@ -153,6 +188,8 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                         document.body.style.backgroundSize = 'cover';
 
                                     }
+
+                                    //load tepmlate
                                     const homeConatainer = document.querySelector('main');
 
                                     homeConatainer.innerHTML = '';
