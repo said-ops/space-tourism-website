@@ -23,10 +23,12 @@
     --heading-font-size:28px;
     --explore-font-size:32px;
     --space-font:'belfair regular';
+    --li-width:0%;
 }
 *,*::after,*::before{
     box-sizing: border-box;
-    transition: all 0.8s ease;
+    transition: all 1s ease;
+    scroll-behavior: smooth;
 }
 a,a:visited,a:active,a:focus-visible{
     text-decoration: none;
@@ -37,7 +39,7 @@ body{
     background-image: url(./assets/home/background-home-desktop.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    
+    background-position: center center;
     
 }
 header{
@@ -167,7 +169,7 @@ main{
 nav ul li::after {
     content: '';
     position: absolute;
-    width: 0;
+    width: var(--li-width , 0%);
     height: 2px;
     bottom: 0;
     left: 0;
@@ -234,10 +236,13 @@ nav ul li:hover::after{
 
     .logo-icon{
         display: unset;
+        
     }
     nav ul li{
         height: auto;
         width:100% ;
+        font-size: 20px;
+    color: var(--white);
     }
     body{
         background-image: url(./assets/home/background-home-mobile.jpg);
@@ -269,8 +274,8 @@ nav ul li:hover::after{
     .logo-icon{
         display: block;
         margin-right: 2rem;
-        width:37px;
-        height: 37px;
+        width: 30px;
+        height: 30px;
     }
     nav{
         justify-content: space-between;
@@ -382,7 +387,7 @@ nav ul li:hover::after{
     margin-top: 5px;
     background-color: #fcfcfce3;
     opacity: 0.5;
-    width: 0;
+    width: var(--li-width,0%);
 }
 .planet-names li:hover::after{
     width: 100%;
@@ -409,7 +414,7 @@ nav ul li:hover::after{
     .dest-container{
         flex-direction: column;
         gap: 3rem;
-        margin-top: 3rem;
+        margin-top: -1rem;
     }
     .dest-image{
         align-items: center;
@@ -448,8 +453,8 @@ nav ul li:hover::after{
 @media screen and (max-width:580px) {
     
     .dest-image img {
-        width: 250px;
-        height: 250px;
+        width: 150px;
+        height: 150px;
     }
     .fixed-container{
         align-items: center;
@@ -466,21 +471,186 @@ nav ul li:hover::after{
     .planet-names{
         justify-content: center;
         width: 100%;
-        gap: 6px;
+        gap: 35px;
         font-size: 18px;
         letter-spacing: 1px;
     }
     .planet-name{
-        font-size: 76px;
+        font-size: 55px;
     }
     .metrics{
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap:4rem;
     }
     .planet-desc{
         text-align: center;
         width: 83%;
         align-self: center;
+        font-size: 13px;
+    }
+    .small-heading{
+        padding-inline: 0;
+        font-size: 15px;
     }
 }
+/*================end dest styling=============*/
+/*===============start crew styling=================*/
+.crew-container{
+    display: flex;
+}
+.crew-infos,.crew-img{
+    width: 50%;
+}
+.crew-infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--off-white);
+    font-family: 'belfair regular';
+}
+.role{
+    text-transform: uppercase;
+    font-family: 'belfair regular';
+    font-size: 36px;
+    color: var(--off-white);
+    opacity: 0.5;
+    line-height: 60%;
+    letter-spacing: 2px;
+}
+.crew-name{
+    font-size: 58px;
+    text-transform: uppercase;
+    color: var(--white);
+
+}
+.crew-bio{
+    color: var(--off-white);
+    font-size: 20px;
+    line-height: 1.5;
+    width: 100%;
+}
+.crew-img{
+    display: flex;
+    justify-content: center;
+    width: 539.28px;
+    height:676px;
+}
+.crew-btns{
+    display: flex;
+    gap: 2rem;
+    
+    position: relative;
+    top: 9rem;
+}
+.crew-btn{
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: grey;
+    border-radius: 50%;
+    opacity: 0.5;
+    cursor: pointer;
+}
+.crew-btn:hover{
+    opacity: 1;
+    background-color: var(--white);
+    box-shadow: 1px 1px 19px 1px white;
+}
+.crew-btn-clicked{
+    opacity: 1;
+    background-color: var(--white);
+    box-shadow: 1px 1px 19px 1px white;
+}
+.overlay{
+    backdrop-filter: brightness(0.5);
+}
+/*===================crew media queries===================*/
+@media screen and (max-width:768px) {
+    
+    .crew-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .crew-infos{
+        align-items: center;
+        width: 70%;
+    }
+    .crew-name{
+        font-size: 44px;
+    }
+    .crew-bio{
+        text-align: center;
+    opacity: 0.7;
+    }
+    .crew-btns{
+        top: 2rem;
+    }
+    .crew-img img{
+        width: 446px;
+    }
+}
+@media screen and (max-width:580px) {
+    
+    .crew-container{
+        gap: 5rem;
+    }
+    .role{
+        font-size: 23px;
+    }
+    .crew-name{
+        font-size:28px
+    }
+    .crew-bio{
+        width:89%;
+        font-size: 20px;
+    }
+    .crew-btns{
+        gap: 1rem;
+    }
+    .crew-img img{
+        width: 271.24px;
+        height: 340px;
+    }
+    .crew-container,.crew-img{
+        width: 100%;
+    }
+    .crew-img{
+        height: auto;
+    }
+    .crew-infos{
+        width: 100%;
+    }
+    
+}
+.crew-img:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent 0%,#06070c 54%);
+    height: 40%;  
+  }
+  .crew-btns{
+      z-index: 2;
+  }
+  @media screen and (max-width:768px) {
+      
+    .crew-img::after{
+        top: 55rem;
+    height: 500px;
+        
+    }
+    .crew-img{
+        margin-top: 5rem;
+    }
+  }
+  @media screen and (max-width:480px) {
+      
+    .crew-img::after{
+        top: 47rem;
+    }
+
+  }

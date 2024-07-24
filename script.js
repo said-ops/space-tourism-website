@@ -63,18 +63,26 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
                                         document.body.style.background = 'url(./assets/destination/background-destination-desktop.jpg)';
                                         document.body.style.backgroundSize = 'cover';
-
+                                        document.body.classList.remove('overlay');
                                     }else if(window.innerWidth < 580){
 
                                         document.body.style.background = 'url(./assets/destination/background-destination-mobile.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 770 && window.innerWidth >580){
 
                                         document.body.style.background = 'url(./assets/destination/background-destination-tablet.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }
+
+                                    navLinks.forEach(item => {
+                                    
+                                        item.style.setProperty('--li-width', '0%');
+                                    });
+                                    li.style.setProperty('--li-width','100%');
 
                                     //load html template
                                     const homeConatainer = document.querySelector('main');
@@ -124,6 +132,12 @@ const navLinks = document.querySelectorAll('nav ul li ');
                   planetNames.forEach(element => {
 
                       element.addEventListener('click', async () => {
+
+                        planetNames.forEach(item => {
+                                    
+                            item.style.setProperty('--li-width', '0%');
+                        });
+                        element.style.setProperty('--li-width','100%');
                         
                         // alert('good');
 
@@ -176,16 +190,19 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
                                         document.body.style.background = 'url(./assets/home/background-home-desktop.jpg)';
                                         document.body.style.backgroundSize = '100% 100%';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 580){
 
                                         document.body.style.background = 'url(./assets/home/background-home-mobile.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 770 && window.innerWidth >580){
 
                                         document.body.style.background = 'url(./assets/home/background-home-tablet.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }
 
@@ -206,6 +223,12 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     </div>
                                   </section>`;
 
+                                  navLinks.forEach(item => {
+                                    
+                                    item.style.setProperty('--li-width', '0%');
+                                });
+                                li.style.setProperty('--li-width','100%');
+
                             });
 
                                 break;
@@ -218,17 +241,107 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
                                         document.body.style.background = 'url(./assets/crew/background-crew-desktop.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.add('overlay');
 
                                     }else if(window.innerWidth < 580){
 
                                         document.body.style.background = 'url(./assets/crew/background-crew-mobile.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.add('overlay');
 
                                     }else if(window.innerWidth < 770 && window.innerWidth >580){
 
                                         document.body.style.background = 'url(./assets/crew/background-crew-tablet.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.add('overlay');
                                     }
+                                    navLinks.forEach(item => {
+                                    
+                                        item.style.setProperty('--li-width', '0%');
+                                    });
+                                    li.style.setProperty('--li-width','100%');
+    
+                                
+
+                                    
+
+                                    //load template
+                            const main = document.querySelector('main');
+                            main.innerHTML = '';
+                            main.innerHTML = `<section class="fixed-container">
+                            <span class="small-heading"><span>01</span> Meet your crew</span>
+                            <div class="crew-container">
+                              <div class="crew-infos">
+                                <span class="role" id="role">commander</span>
+                                <h3 class="crew-name" id="crew-name">Douglas Hurley</h3>
+                                <p class="crew-bio" id="crew-bio">Douglas Gerald Hurley is an American engineer, former Marine Corps pilot 
+                                  and former NASA astronaut. He launched into space for the third time as 
+                                  commander of Crew Dragon Demo-2.</p>
+                                  <div class="crew-btns">
+                                    <span class="crew-btn" data-value="Douglas Hurley"></span>
+                                    <span class="crew-btn" data-value="Mark Shuttleworth"></span>
+                                    <span class="crew-btn" data-value="Victor Glover"></span>
+                                    <span class="crew-btn" data-value="Anousheh Ansari"></span>
+                                  </div>
+                              </div>
+                              <div class="crew-img">
+                                <img src="./assets/crew/image-douglas-hurley.png" alt="crew image" id="crew-image">
+                              </div>
+                            </div>
+                          </section>`;
+
+                          //crew buttons eveents listners
+
+                          const crewButtons = document.querySelectorAll('.crew-btn');
+                          crewButtons[0].classList.add('crew-btn-clicked');
+                          crewButtons.forEach(button => {
+
+                                
+                                
+
+                            button.addEventListener('click', async function () {
+
+                                crewButtons.forEach(btn => {
+                                    
+                                    btn.classList.remove('crew-btn-clicked');
+                                });
+
+                                button.classList.add('crew-btn-clicked');
+
+                                const response = await fetch('data.json');
+                                const data = await response.json();
+
+                                const crew = data.crew;
+                                
+
+                                //crew output elemnts
+                                const crewRole = document.getElementById('role');
+                                const crewName = document.getElementById('crew-name');
+                                const crewBio = document.getElementById('crew-bio');
+                                const crewImage = document.getElementById('crew-image');
+                                
+
+                                crew.forEach(member => {
+
+                                    if(member.name === button.getAttribute('data-value')){
+                                        
+                                
+                                    console.log(member.name);
+                                    crewRole.textContent = member.role;
+                                    crewName.textContent = member.name;
+                                    crewBio.textContent = member.bio;
+                                    crewImage.setAttribute('src' , member.images.png);
+                                
+                                    }
+
+                                });
+
+
+                            });
+
+                          });
+
+                          
 
                             });
 
@@ -242,18 +355,27 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
                                         document.body.style.background = 'url(./assets/technology/background-technology-desktop.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 580){
 
                                         document.body.style.background = 'url(./assets/technology/background-technology-mobile.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 770 && window.innerWidth >580){
 
                                         document.body.style.background = 'url(./assets/technology/background-technology-tablet.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }
+
+                                    navLinks.forEach(item => {
+                                    
+                                        item.style.setProperty('--li-width', '0%');
+                                    });
+                                    li.style.setProperty('--li-width','100%');
 
                             });
                               
@@ -266,16 +388,19 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
                                         document.body.style.background = 'url(./assets/home/background-home-desktop.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 580){
 
                                         document.body.style.background = 'url(./assets/home/background-home-mobile.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }else if(window.innerWidth < 770 && window.innerWidth >580){
 
                                         document.body.style.background = 'url(./assets/home/background-home-tablet.jpg)';
                                         document.body.style.backgroundSize = 'cover';
+                                        document.body.classList.remove('overlay');
 
                                     }
                                     const homeConatainer = document.querySelector('main');
@@ -293,6 +418,12 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                       <button class="home-btn">Explore</button>
                                     </div>
                                   </section>`;
+
+                                  navLinks.forEach(item => {
+                                    
+                                    item.style.setProperty('--li-width', '0%');
+                                });
+                                li.style.setProperty('--li-width','100%');
 
                             });
                                 break;
