@@ -10,7 +10,11 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
     document.addEventListener('DOMContentLoaded', () => {
 
-        navLinks[0].style.setProperty('--li-width','100%');
+      document.querySelector('.home-btn').addEventListener('click', () => {
+
+        navLinks[1].click();
+
+      });
 
         //menu event listener
         icon.addEventListener('click', function (){
@@ -130,7 +134,7 @@ const navLinks = document.querySelectorAll('nav ul li ');
                   //adding event listners to planet names in distination page
                                 
                   const planetNames = document.querySelectorAll('.planet-names li');
-                  planetNames[0].style.setProperty('--li-width','100%');
+                  planetNames[0].style.setProperty('--li-width', '100%');
 
                   planetNames.forEach(element => {
 
@@ -272,7 +276,7 @@ const navLinks = document.querySelectorAll('nav ul li ');
                             const main = document.querySelector('main');
                             main.innerHTML = '';
                             main.innerHTML = `<section class="fixed-container">
-                            <span class="small-heading"><span>02</span> Meet your crew</span>
+                            <span class="small-heading"><span>01</span> Meet your crew</span>
                             <div class="crew-container">
                               <div class="crew-infos">
                                 <span class="role" id="role">commander</span>
@@ -380,6 +384,96 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     });
                                     li.style.setProperty('--li-width','100%');
 
+                                    //loading html template
+                                    const main = document.querySelector('main');
+                                    
+                                    main.innerHTML = '';
+                                    main.innerHTML = `<section class="tech-wrapper">
+                                    <span class="small-heading tech-title"><span>03</span> Space launch 101</span>
+                                    <div class="tech-container">
+                                      <div class="tech-text">
+                                        <div class="tech-btns">
+                                          <span class="tech-btn" id="tech-1" data-value="Launch vehicle">1</span>
+                                          <span class="tech-btn" id="tech-2" data-value="Spaceport">2</span>
+                                          <span class="tech-btn" id="tech-3" data-value="Space capsule">3</span>
+                                        </div>
+                                        <div class="tech-infos">
+                                          <div class="role">The terminology...</div>
+                                          <div class="crew-name" id="tech-name">Launch vehicle</div>
+                                          <div class="crew-bio" id="tech-desc">A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a 
+                                            payload from Earth's surface to space, usually to Earth orbit or beyond. Our 
+                                            WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, 
+                                            it's quite an awe-inspiring sight on the launch pad!</div>
+                                        </div>
+                                      </div>
+                                      <div class="tech-img">
+                                        <img src="./assets/technology/image-launch-vehicle-portrait.jpg" id="tech-img" alt="launch vehicle">
+                                      </div>
+                                    </div>
+                                  </section>`;
+
+                                  //setting tech buttons
+
+                                  const techButtons = document.querySelectorAll('.tech-btns span');
+                                  techButtons[0].classList.add('hover');
+
+                                  //output elements
+                                  const techName = document.getElementById('tech-name');
+                                  const techDesc = document.getElementById('tech-desc');
+                                  const techImage = document.getElementById('tech-img');
+                                  
+                                  techButtons.forEach(button => {
+
+                                    button.addEventListener('click', async () =>{
+                                      
+                                      techButtons.forEach(btn =>{
+
+                                          btn.classList.remove('hover');
+                                      });
+                                      button.classList.add('hover');
+
+                                      //data
+                                      
+
+                                  const response = await fetch('data.json');
+                                  const data = await response.json();
+                                  const techs = data.technology;
+                                  
+                                  
+                                      
+                                  techs.forEach(tech => {
+
+                                    if(tech.name === button.getAttribute('data-value')){
+
+                                      techName.textContent = tech.name;
+                                      techDesc.textContent = tech.description;
+                                      
+                                      if(window.innerWidth >= 768 || window.innerWidth <= 480){
+
+                                        techImage.setAttribute('src', tech.images.portrait);
+
+                                      }
+                                      if(window.innerWidth <= 768 ){
+
+                                        techImage.setAttribute('src', tech.images.landscape);
+
+                                      }
+                                      
+
+                                    }
+
+                                  });
+
+                                      
+
+
+
+                                    });
+                                  });
+
+
+                                    
+
                             });
                               
                             break;
@@ -422,7 +516,6 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     </div>
                                   </section>`;
 
-                                  
                                   navLinks.forEach(item => {
                                     
                                     item.style.setProperty('--li-width', '0%');
@@ -435,11 +528,4 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
 
                     });
-
-                   
-                        
-
-
-
     });
-

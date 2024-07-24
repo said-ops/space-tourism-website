@@ -75,7 +75,7 @@ nav ul{ display: flex;
     letter-spacing: 4px;
     padding-inline: 8rem;
     justify-content: start;
-    
+    padding-right: 5rem;
     gap: 2rem;  
     transition: all 0.4s ease;
 }
@@ -114,15 +114,16 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .home-container{
-    width:1110px;
-    height: 400px;
+    width: 1110px;
+    height: 634px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding-left: 1rem;
-    margin-top: 13rem;
+    /* padding-left: 1rem; */
+    /* margin-top: 13rem;*/
 }
 .home-text{
     display: flex;
@@ -161,6 +162,8 @@ main{
     border-radius: 50%;
     font-size: var(--explore-font-size);
     text-transform: uppercase;
+    margin-bottom: 2rem;
+    cursor: pointer;
     transition: all 0.4s ease;
 }
 .home-btn:hover{
@@ -170,7 +173,7 @@ nav ul li::after {
     content: '';
     position: absolute;
     width: var(--li-width , 0%);
-    height: 2px;
+    height: 4px;
     bottom: 0;
     left: 0;
     background-color: var(--off-white);
@@ -178,6 +181,7 @@ nav ul li::after {
 }
 nav ul li:hover::after{
     width: 100%;
+    opacity: 0.5;
     
 }
 
@@ -390,11 +394,11 @@ nav ul li:hover::after{
 .planet-names li::after{
     content: '';
     display: block;
-    height: 2px;
+    height: 4px;
     position: relative;
     margin-top: 5px;
-    background-color: #fcfcfce3;
-    opacity: 0.5;
+    background-color: #ffffff;
+    /* opacity: 0.5; */
     width: var(--li-width,0%);
 }
 .planet-names li:hover::after{
@@ -506,6 +510,7 @@ nav ul li:hover::after{
 /*===============start crew styling=================*/
 .crew-container{
     display: flex;
+    height:734px;
 }
 .crew-infos,.crew-img{
     width: 50%;
@@ -531,7 +536,7 @@ nav ul li:hover::after{
     font-size: 58px;
     text-transform: uppercase;
     color: var(--white);
-
+    font-family: 'belfair regular';
 }
 .crew-bio{
     color: var(--off-white);
@@ -542,8 +547,8 @@ nav ul li:hover::after{
 .crew-img{
     display: flex;
     justify-content: center;
-    width: 539.28px;
-    height:676px;
+    width: 50%;
+    height: 734px;
 }
 .crew-btns{
     display: flex;
@@ -670,14 +675,13 @@ nav ul li:hover::after{
         max-height: 670px;
         position: absolute;
         bottom: 5rem;
+        right: 8.5rem;
     }
     .crew-btns{
         top: 11rem;
         gap: 2.5rem;
     }
-    .role{
-        margin-top: 5rem;
-    }
+    
     nav ul::before{
         content: '';
     display: block;
@@ -711,4 +715,117 @@ nav ul li:hover::after{
         height: 200px;
     }
 
+  }
+  /*================end crew styling==========*/
+  /*================start tech styling==========*/
+  .tech-wrapper{
+    height: 792px;
+    width: 1275px;
+    align-self: end;
+  }
+  .tech-container{
+    height: 734px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 2.2rem;
+  }
+  .tech-text,.tech-img{
+      width: 50%;
+  }
+  .tech-img img{
+    width: 608px;
+    height: 600px;
+  }
+  .tech-img{
+    width: 608px;
+  }
+  .tech-btns{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tech-btn{
+    display: block;
+    background-color: var(--blue);
+    width: 80px;
+    height: 80px;
+    font-size: 37px;
+    color: var(--white);
+    border-radius: 50%;
+    border: 1px solid var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family:'belfair regular';
+  }
+  .tech-btn:hover,.hover{
+    background-color: #ffffffd9;
+    color: var(--blue);
+
+  }
+  .tech-text{
+    width: 635px;
+    height: 303px;
+    display: flex;
+    gap: 4rem;
+  }
+  .tech-infos{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  #tech-desc{
+    font-family: 'belfair regular';
+  }
+  /*===========tech ledia queries==============*/
+  @media screen and (max-width:768px) {
+      .tech-container{
+        flex-direction: column-reverse;
+        justify-content: center;
+        width: 100%;
+        height: 800px;
+      }
+      .tech-wrapper{
+        width: 100%;
+        height: 884px;
+      }
+      .tech-img{
+        width: 768px;
+        height: 334px;
+        align-self: flex-end;
+      }
+      .tech-img img{
+        width: 768px;
+        height: 334px;
+      }
+      .tech-text{
+        flex-direction: column;
+      }
+      .tech-infos{
+        align-items: center;
+      }
+      .tech-btns{
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .tech-btn{
+        width: 56px;
+        height: 56px;
+        font-size: 18px;
+      }
+  }
+  @media screen and (max-width:480px) {
+        .tech-text{
+            width: 100%;
+        }
+        .tech-img,.tech-img img{
+            width: 100%;
+        }
+        .tech-title{
+            display: block;
+            text-align: center;
+        }
   }
