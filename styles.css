@@ -186,7 +186,14 @@ nav ul li:hover::after{
     body{
         background-image: url(./assets/home/background-home-tablet.jpg);
         background-size: cover;
-        background-position-x: unset;
+        height: 1024px;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        overflow: hidden;
+    }
+    header{
+        height: 96px;
     }
     nav{
         gap: 2.5rem;
@@ -195,10 +202,10 @@ nav ul li:hover::after{
     }
     nav ul{
         width: unset;
-    padding: unset;
-    flex: 1;
-    justify-content: end;
-    padding-right: 10px;
+        padding: unset;
+        flex: 1;
+        justify-content: end;
+        padding-right: 10px;
         
     }
     nav ul li{
@@ -246,6 +253,7 @@ nav ul li:hover::after{
     }
     body{
         background-image: url(./assets/home/background-home-mobile.jpg);
+        overflow: unset;
     }
     .small-heading{
         font-size: 20px;
@@ -513,7 +521,7 @@ nav ul li:hover::after{
 .role{
     text-transform: uppercase;
     font-family: 'belfair regular';
-    font-size: 36px;
+    font-size: 30px;
     color: var(--off-white);
     opacity: 0.5;
     line-height: 60%;
@@ -527,8 +535,8 @@ nav ul li:hover::after{
 }
 .crew-bio{
     color: var(--off-white);
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: 21px;
+    line-height: 1.8;
     width: 100%;
 }
 .crew-img{
@@ -566,12 +574,18 @@ nav ul li:hover::after{
 .overlay{
     backdrop-filter: brightness(0.5);
 }
+.crew-img img{
+    
+    max-width: 570px;
+    max-height: 670px;
+}
 /*===================crew media queries===================*/
 @media screen and (max-width:768px) {
     
     .crew-container{
         flex-direction: column;
         align-items: center;
+        gap: 5rem;
     }
     .crew-infos{
         align-items: center;
@@ -582,13 +596,24 @@ nav ul li:hover::after{
     }
     .crew-bio{
         text-align: center;
-    opacity: 0.7;
+        opacity: 0.7;
+        font-size: 19px;
     }
     .crew-btns{
-        top: 2rem;
+        top: 0rem;
+        gap: 1rem;
+    }
+    .crew-btn{
+        width: 10px;
+        height: 10px;    
     }
     .crew-img img{
-        width: 446px;
+        width: 447px;
+        /* margin-top: 8rem; */
+        max-height: 500px;
+    }
+    .role{
+        font-size: 24px;
     }
 }
 @media screen and (max-width:580px) {
@@ -612,6 +637,7 @@ nav ul li:hover::after{
     .crew-img img{
         width: 271.24px;
         height: 340px;
+        filter: brightness(1);
     }
     .crew-container,.crew-img{
         width: 100%;
@@ -631,26 +657,58 @@ nav ul li:hover::after{
     left: 0;
     right: 0;
     background: linear-gradient(to bottom, transparent 0%,#06070c 54%);
-    height: 40%;  
+    height: 18%;  
   }
   .crew-btns{
       z-index: 2;
   }
+  @media screen and (min-width:1440px) {
+
+    .crew-img img{
+        
+        max-width: 570px;
+        max-height: 670px;
+        position: absolute;
+        bottom: 5rem;
+    }
+    .crew-btns{
+        top: 11rem;
+        gap: 2.5rem;
+    }
+    .role{
+        margin-top: 5rem;
+    }
+    nav ul::before{
+        content: '';
+    display: block;
+    color: var(--off-white);
+    width: 31rem;
+    position: absolute;
+    background-color: #d0d6f959;
+    z-index: 0;
+    height: 1px;
+    transform: translateX(-116%);
+    }
+      
+  }
   @media screen and (max-width:768px) {
       
     .crew-img::after{
-        top: 55rem;
-    height: 500px;
-        
+        top: 48rem;
+        height: 500px;
+        content: '';
     }
     .crew-img{
-        margin-top: 5rem;
+        /* margin-top: 1rem; */
+        height: auto;
     }
+    
   }
   @media screen and (max-width:480px) {
       
     .crew-img::after{
-        top: 47rem;
+        top: 53rem;
+        height: 200px;
     }
 
   }

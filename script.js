@@ -10,6 +10,8 @@ const navLinks = document.querySelectorAll('nav ul li ');
 
     document.addEventListener('DOMContentLoaded', () => {
 
+        navLinks[0].style.setProperty('--li-width','100%');
+
         //menu event listener
         icon.addEventListener('click', function (){
 
@@ -128,6 +130,7 @@ const navLinks = document.querySelectorAll('nav ul li ');
                   //adding event listners to planet names in distination page
                                 
                   const planetNames = document.querySelectorAll('.planet-names li');
+                  planetNames[0].style.setProperty('--li-width','100%');
 
                   planetNames.forEach(element => {
 
@@ -269,7 +272,7 @@ const navLinks = document.querySelectorAll('nav ul li ');
                             const main = document.querySelector('main');
                             main.innerHTML = '';
                             main.innerHTML = `<section class="fixed-container">
-                            <span class="small-heading"><span>01</span> Meet your crew</span>
+                            <span class="small-heading"><span>02</span> Meet your crew</span>
                             <div class="crew-container">
                               <div class="crew-infos">
                                 <span class="role" id="role">commander</span>
@@ -419,6 +422,7 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     </div>
                                   </section>`;
 
+                                  
                                   navLinks.forEach(item => {
                                     
                                     item.style.setProperty('--li-width', '0%');
