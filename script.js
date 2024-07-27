@@ -1,100 +1,82 @@
 //menu elements
-const icon = document.querySelector('.logo-icon');
-const menu = document.querySelector('nav ul');
+const icon = document.querySelector(".logo-icon");
+const menu = document.querySelector("nav ul");
 
 //=====================function to handle the nav links
 
 //======================nav li elements
 
-const navLinks = document.querySelectorAll('nav ul li ');
+const navLinks = document.querySelectorAll("nav ul li ");
 
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".home-btn").addEventListener("click", () => {
+    navLinks[1].click();
+  });
 
-      document.querySelector('.home-btn').addEventListener('click', () => {
+  navLinks[0].style.setProperty("--li-width", "100%");
 
-        navLinks[1].click();
+  //menu event listener
+  icon.addEventListener("click", function () {
+    if (menu.style.display === "none") {
+      menu.style.display = "flex";
+      menu.style.width = "73%";
+      icon.setAttribute("src", "./assets/shared/icon-close.svg");
+    } else {
+      menu.style.width = "0%";
+      menu.style.display = "none";
+      icon.setAttribute("src", "./assets/shared/icon-hamburger.svg");
+    }
 
-      });
+    //resize event
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 580) {
+        menu.style.display = "flex";
+      }
+      if (window.innerWidth < 580) {
+        menu.style.display = "none";
+        icon.setAttribute("src", "./assets/shared/icon-hamburger.svg");
+      }
+    });
+  });
+  //end menu event listener
 
-        //menu event listener
-        icon.addEventListener('click', function (){
+  //==================destination section here==========================================================
 
-            if(menu.style.display === 'none'){
+  //==========================================================================
+  //links emlementaion to change background image for every section and screen size
+  document.querySelectorAll("li").forEach((li) => {
+    //change background four each link
 
-                menu.style.display ='flex';
-                menu.style.width = '73%';
-                icon.setAttribute('src','./assets/shared/icon-close.svg');
+    switch (li.getAttribute("data-value")) {
+      case "destination":
+        li.addEventListener("click", () => {
+          if (window.innerWidth > 770) {
+            document.body.style.background =
+              "url(./assets/destination/background-destination-desktop.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 580) {
+            document.body.style.background =
+              "url(./assets/destination/background-destination-mobile.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 770 && window.innerWidth > 580) {
+            document.body.style.background =
+              "url(./assets/destination/background-destination-tablet.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          }
 
-            }
-            else {
+          navLinks.forEach((item) => {
+            item.style.setProperty("--li-width", "0%");
+          });
+          li.style.setProperty("--li-width", "100%");
 
-                menu.style.width = '0%';
-                menu.style.display = 'none';
-                icon.setAttribute('src','./assets/shared/icon-hamburger.svg');
-                
-            }
-            
-            //resize event
-            window.addEventListener('resize', () => {
+          //load html template
+          const homeConatainer = document.querySelector("main");
 
-                if(window.innerWidth > 580){
-
-                    menu.style.display = 'flex';
-    
-                }
-                if(window.innerWidth <580 ){
-                    menu.style.display = 'none';
-                    icon.setAttribute('src','./assets/shared/icon-hamburger.svg');
-                }
-
-            });
-
-        });
-        //end menu event listener
-
-        //==================destination section here==========================================================
-
-                                //==========================================================================
-                    //links emlementaion to change background image for every section and screen size
-                    document.querySelectorAll('li').forEach( li =>  {
-
-                        //change background four each link 
-
-                        switch (li.getAttribute('data-value')) {
-                            case 'destination':
-
-                                li.addEventListener('click' , () => {
-
-                                    if(window.innerWidth > 770){
-
-                                        document.body.style.background = 'url(./assets/destination/background-destination-desktop.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-                                    }else if(window.innerWidth < 580){
-
-                                        document.body.style.background = 'url(./assets/destination/background-destination-mobile.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 770 && window.innerWidth >580){
-
-                                        document.body.style.background = 'url(./assets/destination/background-destination-tablet.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }
-
-                                    navLinks.forEach(item => {
-                                    
-                                        item.style.setProperty('--li-width', '0%');
-                                    });
-                                    li.style.setProperty('--li-width','100%');
-
-                                    //load html template
-                                    const homeConatainer = document.querySelector('main');
-
-                    homeConatainer.innerHTML = '';
-                    homeConatainer.innerHTML =` <section class="fixed-container">
+          homeConatainer.innerHTML = "";
+          homeConatainer.innerHTML = ` <section class="fixed-container">
                     <span class="small-heading"><span>01</span> Pick your destination</span>
                     <div class="dest-container" id="dest-container">
                       <!--destination template here-->
@@ -130,94 +112,76 @@ const navLinks = document.querySelectorAll('nav ul li ');
                     </div>
                   </section>`;
 
+          //adding event listners to planet names in distination page
 
-                  //adding event listners to planet names in distination page
-                                
-                  const planetNames = document.querySelectorAll('.planet-names li');
-                  planetNames[0].style.setProperty('--li-width', '100%');
+          const planetNames = document.querySelectorAll(".planet-names li");
+          planetNames[0].style.setProperty("--li-width", "100%");
 
-                  planetNames.forEach(element => {
+          planetNames.forEach((element) => {
+            element.addEventListener("click", async () => {
+              planetNames.forEach((item) => {
+                item.style.setProperty("--li-width", "0%");
+              });
+              element.style.setProperty("--li-width", "100%");
 
-                      element.addEventListener('click', async () => {
+              // alert('good');
 
-                        planetNames.forEach(item => {
-                                    
-                            item.style.setProperty('--li-width', '0%');
-                        });
-                        element.style.setProperty('--li-width','100%');
-                        
-                        // alert('good');
+              //output elemnt to desplay informations
+              const planetImage = document.getElementById("planet-img");
+              const planetName = document.getElementById("planet-name");
+              const planetDesc = document.getElementById("planet-desc");
+              const planetDistance = document.getElementById("distance");
+              const planetTravel = document.getElementById("travel");
 
-                        //output elemnt to desplay informations
-                        const planetImage = document.getElementById('planet-img');
-                        const planetName = document.getElementById('planet-name');
-                        const planetDesc = document.getElementById('planet-desc');
-                        const planetDistance = document.getElementById('distance');
-                        const planetTravel = document.getElementById('travel');
+              //getting data from json
 
-                        //getting data from json 
+              const response = await fetch("data.json");
+              const data = await response.json();
 
-                        const response = await fetch('data.json');
-                        const data = await response.json();
+              const planets = data.destinations;
 
-                        const planets = data.destinations;
+              // console.log(planets[0].description);
 
-                        // console.log(planets[0].description);
-                        
-                        //loop through every planet and test agains data-value and get descs
-                        planets.forEach((planet,index) => {
+              //loop through every planet and test agains data-value and get descs
+              planets.forEach((planet, index) => {
+                if (planet.name === element.getAttribute("data-value")) {
+                  planetName.textContent = planet.name;
+                  planetDesc.textContent = planet.description;
+                  planetDistance.textContent = planet.distance;
+                  planetTravel.textContent = planet.travel;
+                  planetImage.setAttribute("src", planet.images.png);
+                }
+              });
+            });
+          });
+        });
 
-                                    if(planet.name === element.getAttribute('data-value')){
-                                        planetName.textContent = planet.name;
-                                        planetDesc.textContent = planet.description;
-                                        planetDistance.textContent = planet.distance;
-                                        planetTravel.textContent = planet.travel;
-                                        planetImage.setAttribute('src',planet.images.png);
-                                    }
-                        });
+        break;
 
+      case "home":
+        li.addEventListener("click", () => {
+          if (window.innerWidth > 770) {
+            document.body.style.background =
+              "url(./assets/home/background-home-desktop.jpg)";
+            document.body.style.backgroundSize = "100% 100%";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 580) {
+            document.body.style.background =
+              "url(./assets/home/background-home-mobile.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 770 && window.innerWidth > 580) {
+            document.body.style.background =
+              "url(./assets/home/background-home-tablet.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          }
 
+          //load tepmlate
+          const homeConatainer = document.querySelector("main");
 
-
-                      });
-                      
-                  });
-
-                                    
-                    
-                            });
-                                
-                                break;
-                            
-                             case 'home':
-                                 
-                                li.addEventListener('click' , () => {
-
-                                    if(window.innerWidth > 770){
-
-                                        document.body.style.background = 'url(./assets/home/background-home-desktop.jpg)';
-                                        document.body.style.backgroundSize = '100% 100%';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 580){
-
-                                        document.body.style.background = 'url(./assets/home/background-home-mobile.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 770 && window.innerWidth >580){
-
-                                        document.body.style.background = 'url(./assets/home/background-home-tablet.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }
-
-                                    //load tepmlate
-                                    const homeConatainer = document.querySelector('main');
-
-                                    homeConatainer.innerHTML = '';
-                                    homeConatainer.innerHTML =`<section class="home-container" id="main">
+          homeConatainer.innerHTML = "";
+          homeConatainer.innerHTML = `<section class="home-container" id="main">
                                     <div class="home-text">
                                       <span class="small-heading">So, you want to travel to</span>
                                       <h1 class="home-heading">Space</h1>
@@ -230,52 +194,41 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     </div>
                                   </section>`;
 
-                                  navLinks.forEach(item => {
-                                    
-                                    item.style.setProperty('--li-width', '0%');
-                                });
-                                li.style.setProperty('--li-width','100%');
+          navLinks.forEach((item) => {
+            item.style.setProperty("--li-width", "0%");
+          });
+          li.style.setProperty("--li-width", "100%");
+        });
 
-                            });
+        break;
 
-                                break;
+      case "crew":
+        li.addEventListener("click", () => {
+          if (window.innerWidth > 770) {
+            document.body.style.background =
+              "url(./assets/crew/background-crew-desktop.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.add("overlay");
+          } else if (window.innerWidth < 580) {
+            document.body.style.background =
+              "url(./assets/crew/background-crew-mobile.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.add("overlay");
+          } else if (window.innerWidth < 770 && window.innerWidth > 580) {
+            document.body.style.background =
+              "url(./assets/crew/background-crew-tablet.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.add("overlay");
+          }
+          navLinks.forEach((item) => {
+            item.style.setProperty("--li-width", "0%");
+          });
+          li.style.setProperty("--li-width", "100%");
 
-                            case 'crew' :
-                                
-                                li.addEventListener('click' , () => {
-
-                                    if(window.innerWidth > 770){
-
-                                        document.body.style.background = 'url(./assets/crew/background-crew-desktop.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.add('overlay');
-
-                                    }else if(window.innerWidth < 580){
-
-                                        document.body.style.background = 'url(./assets/crew/background-crew-mobile.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.add('overlay');
-
-                                    }else if(window.innerWidth < 770 && window.innerWidth >580){
-
-                                        document.body.style.background = 'url(./assets/crew/background-crew-tablet.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.add('overlay');
-                                    }
-                                    navLinks.forEach(item => {
-                                    
-                                        item.style.setProperty('--li-width', '0%');
-                                    });
-                                    li.style.setProperty('--li-width','100%');
-    
-                                
-
-                                    
-
-                                    //load template
-                            const main = document.querySelector('main');
-                            main.innerHTML = '';
-                            main.innerHTML = `<section class="fixed-container">
+          //load template
+          const main = document.querySelector("main");
+          main.innerHTML = "";
+          main.innerHTML = `<section class="fixed-container">
                             <span class="small-heading"><span>01</span> Meet your crew</span>
                             <div class="crew-container">
                               <div class="crew-infos">
@@ -297,98 +250,73 @@ const navLinks = document.querySelectorAll('nav ul li ');
                             </div>
                           </section>`;
 
-                          //crew buttons eveents listners
+          //crew buttons eveents listners
 
-                          const crewButtons = document.querySelectorAll('.crew-btn');
-                          crewButtons[0].classList.add('crew-btn-clicked');
-                          crewButtons.forEach(button => {
+          const crewButtons = document.querySelectorAll(".crew-btn");
+          crewButtons[0].classList.add("crew-btn-clicked");
+          crewButtons.forEach((button) => {
+            button.addEventListener("click", async function () {
+              crewButtons.forEach((btn) => {
+                btn.classList.remove("crew-btn-clicked");
+              });
 
-                                
-                                
+              button.classList.add("crew-btn-clicked");
 
-                            button.addEventListener('click', async function () {
+              const response = await fetch("data.json");
+              const data = await response.json();
 
-                                crewButtons.forEach(btn => {
-                                    
-                                    btn.classList.remove('crew-btn-clicked');
-                                });
+              const crew = data.crew;
 
-                                button.classList.add('crew-btn-clicked');
+              //crew output elemnts
+              const crewRole = document.getElementById("role");
+              const crewName = document.getElementById("crew-name");
+              const crewBio = document.getElementById("crew-bio");
+              const crewImage = document.getElementById("crew-image");
 
-                                const response = await fetch('data.json');
-                                const data = await response.json();
+              crew.forEach((member) => {
+                if (member.name === button.getAttribute("data-value")) {
+                  console.log(member.name);
+                  crewRole.textContent = member.role;
+                  crewName.textContent = member.name;
+                  crewBio.textContent = member.bio;
+                  crewImage.setAttribute("src", member.images.png);
+                }
+              });
+            });
+          });
+        });
 
-                                const crew = data.crew;
-                                
+        break;
 
-                                //crew output elemnts
-                                const crewRole = document.getElementById('role');
-                                const crewName = document.getElementById('crew-name');
-                                const crewBio = document.getElementById('crew-bio');
-                                const crewImage = document.getElementById('crew-image');
-                                
+      case "tech":
+        li.addEventListener("click", () => {
+          if (window.innerWidth > 770) {
+            document.body.style.background =
+              "url(./assets/technology/background-technology-desktop.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 580) {
+            document.body.style.background =
+              "url(./assets/technology/background-technology-mobile.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 770 && window.innerWidth > 580) {
+            document.body.style.background =
+              "url(./assets/technology/background-technology-tablet.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          }
 
-                                crew.forEach(member => {
+          navLinks.forEach((item) => {
+            item.style.setProperty("--li-width", "0%");
+          });
+          li.style.setProperty("--li-width", "100%");
 
-                                    if(member.name === button.getAttribute('data-value')){
-                                        
-                                
-                                    console.log(member.name);
-                                    crewRole.textContent = member.role;
-                                    crewName.textContent = member.name;
-                                    crewBio.textContent = member.bio;
-                                    crewImage.setAttribute('src' , member.images.png);
-                                
-                                    }
+          //loading html template
+          const main = document.querySelector("main");
 
-                                });
-
-
-                            });
-
-                          });
-
-                          
-
-                            });
-
-                            break;
-
-                            case 'tech':
-
-                                li.addEventListener('click' , () => {
-
-                                    if(window.innerWidth > 770){
-
-                                        document.body.style.background = 'url(./assets/technology/background-technology-desktop.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 580){
-
-                                        document.body.style.background = 'url(./assets/technology/background-technology-mobile.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 770 && window.innerWidth >580){
-
-                                        document.body.style.background = 'url(./assets/technology/background-technology-tablet.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }
-
-                                    navLinks.forEach(item => {
-                                    
-                                        item.style.setProperty('--li-width', '0%');
-                                    });
-                                    li.style.setProperty('--li-width','100%');
-
-                                    //loading html template
-                                    const main = document.querySelector('main');
-                                    
-                                    main.innerHTML = '';
-                                    main.innerHTML = `<section class="tech-wrapper">
+          main.innerHTML = "";
+          main.innerHTML = `<section class="tech-wrapper">
                                     <span class="small-heading tech-title"><span>03</span> Space launch 101</span>
                                     <div class="tech-container">
                                       <div class="tech-text">
@@ -412,98 +340,70 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     </div>
                                   </section>`;
 
-                                  //setting tech buttons
+          //setting tech buttons
 
-                                  const techButtons = document.querySelectorAll('.tech-btns span');
-                                  techButtons[0].classList.add('hover');
+          const techButtons = document.querySelectorAll(".tech-btns span");
+          techButtons[0].classList.add("hover");
 
-                                  //output elements
-                                  const techName = document.getElementById('tech-name');
-                                  const techDesc = document.getElementById('tech-desc');
-                                  const techImage = document.getElementById('tech-img');
-                                  
-                                  techButtons.forEach(button => {
+          //output elements
+          const techName = document.getElementById("tech-name");
+          const techDesc = document.getElementById("tech-desc");
+          const techImage = document.getElementById("tech-img");
 
-                                    button.addEventListener('click', async () =>{
-                                      
-                                      techButtons.forEach(btn =>{
+          techButtons.forEach((button) => {
+            button.addEventListener("click", async () => {
+              techButtons.forEach((btn) => {
+                btn.classList.remove("hover");
+              });
+              button.classList.add("hover");
 
-                                          btn.classList.remove('hover');
-                                      });
-                                      button.classList.add('hover');
+              //data
 
-                                      //data
-                                      
+              const response = await fetch("data.json");
+              const data = await response.json();
+              const techs = data.technology;
 
-                                  const response = await fetch('data.json');
-                                  const data = await response.json();
-                                  const techs = data.technology;
-                                  
-                                  
-                                      
-                                  techs.forEach(tech => {
+              techs.forEach((tech) => {
+                if (tech.name === button.getAttribute("data-value")) {
+                  techName.textContent = tech.name;
+                  techDesc.textContent = tech.description;
 
-                                    if(tech.name === button.getAttribute('data-value')){
+                  if (window.innerWidth >= 768 || window.innerWidth <= 480) {
+                    techImage.setAttribute("src", tech.images.portrait);
+                  }
+                  if (window.innerWidth <= 768) {
+                    techImage.setAttribute("src", tech.images.landscape);
+                  }
+                }
+              });
+            });
+          });
+        });
 
-                                      techName.textContent = tech.name;
-                                      techDesc.textContent = tech.description;
-                                      
-                                      if(window.innerWidth >= 768 || window.innerWidth <= 480){
+        break;
 
-                                        techImage.setAttribute('src', tech.images.portrait);
+      default:
+        li.addEventListener("click", () => {
+          if (window.innerWidth > 770) {
+            document.body.style.background =
+              "url(./assets/home/background-home-desktop.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 580) {
+            document.body.style.background =
+              "url(./assets/home/background-home-mobile.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          } else if (window.innerWidth < 770 && window.innerWidth > 580) {
+            document.body.style.background =
+              "url(./assets/home/background-home-tablet.jpg)";
+            document.body.style.backgroundSize = "cover";
+            document.body.classList.remove("overlay");
+          }
+          const homeConatainer = document.querySelector("main");
 
-                                      }
-                                      if(window.innerWidth <= 768 ){
-
-                                        techImage.setAttribute('src', tech.images.landscape);
-
-                                      }
-                                      
-
-                                    }
-
-                                  });
-
-                                      
-
-
-
-                                    });
-                                  });
-
-
-                                    
-
-                            });
-                              
-                            break;
-
-                            default:
-                                li.addEventListener('click' , () => {
-
-                                    if(window.innerWidth > 770){
-
-                                        document.body.style.background = 'url(./assets/home/background-home-desktop.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 580){
-
-                                        document.body.style.background = 'url(./assets/home/background-home-mobile.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }else if(window.innerWidth < 770 && window.innerWidth >580){
-
-                                        document.body.style.background = 'url(./assets/home/background-home-tablet.jpg)';
-                                        document.body.style.backgroundSize = 'cover';
-                                        document.body.classList.remove('overlay');
-
-                                    }
-                                    const homeConatainer = document.querySelector('main');
-
-                                    homeConatainer.innerHTML = '';
-                                    homeConatainer.innerHTML =`<section class="home-container" id="main">
+          homeConatainer.innerHTML = "";
+          homeConatainer.innerHTML = `<section class="home-container" id="main">
                                     <div class="home-text">
                                       <span class="small-heading">So, you want to travel to</span>
                                       <h1 class="home-heading">Space</h1>
@@ -516,16 +416,12 @@ const navLinks = document.querySelectorAll('nav ul li ');
                                     </div>
                                   </section>`;
 
-                                  navLinks.forEach(item => {
-                                    
-                                    item.style.setProperty('--li-width', '0%');
-                                });
-                                li.style.setProperty('--li-width','100%');
-
-                            });
-                                break;
-                        }
-
-
-                    });
-    });
+          navLinks.forEach((item) => {
+            item.style.setProperty("--li-width", "0%");
+          });
+          li.style.setProperty("--li-width", "100%");
+        });
+        break;
+    }
+  });
+});
